@@ -56,17 +56,15 @@
 - 공통 디자인 시스템 적용 — SBerp 커스텀 디자인 시스템 CSS 클래스를 전체 화면에 적용 → 모듈 전반의 UI 일관성 확보
   
 ERD
-project ── project_member ── employee
-   │
-   └── task
+![ERD](images/image.png)
 
-project, project_member, task 3개 테이블 기준으로 설계했고, 회사 단위 멀티 테넌시(com_id) 구조에 맞춰 상위 company 테이블과 연결됩니다.
+project, project_member, task 3개 테이블 기준으로 설계했고, 회사 단위 멀티 테넌시(com_id) 구조에 맞춰 상위 company,employee 테이블과 연결됩니다.
 
 Troubleshooting
 
 연쇄적으로 발생하던 400/500 에러
 
-문제: 뷰(JSP) · 컨트롤러 · MyBatis 매퍼 등 여러 계층에 걸쳐 원인이 얽혀 있어 파악이 어려웠음
+> 문제: 뷰(JSP) · 컨트롤러 · MyBatis 매퍼 등 여러 계층에 걸쳐 원인이 얽혀 있어 파악이 어려웠음
 해결: 계층별로 하나씩 재현하며 순차적으로 원인 추적 및 디버깅
 결과: 프로젝트/태스크 모듈의 기본 CRUD 흐름 안정화
 Related Repositories
