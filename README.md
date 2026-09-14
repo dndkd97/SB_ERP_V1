@@ -56,7 +56,7 @@
 ![사원 자동완성](images/sberp_v1_멤버추가.png)
 - 공통 디자인 시스템 적용 — SBerp 커스텀 디자인 시스템 CSS 클래스를 전체 화면에 적용 → 모듈 전반의 UI 일관성 확보
   
-ERD
+## ERD
 ![ERD](images/image.png)
 
 project, project_member, task 3개 테이블 기준으로 설계했고, 회사 단위 멀티 테넌시(com_id) 구조에 맞춰 상위 company,employee 테이블과 연결됩니다.
