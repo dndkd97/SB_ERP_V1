@@ -61,7 +61,7 @@
 
 project, project_member, task 3개 테이블 기준으로 설계했고, 회사 단위 멀티 테넌시(com_id) 구조에 맞춰 상위 company,employee 테이블과 연결됩니다.
 
-Troubleshooting
+## Troubleshooting
 
 연쇄적으로 발생하던 400/500 에러
 
