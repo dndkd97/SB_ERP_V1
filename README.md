@@ -70,6 +70,6 @@ project, project_member, task 3개 테이블 기준으로 설계했고, 회사 �
  결과: 프로젝트/태스크 모듈의 기본 CRUD 흐름 안정화
 
 ## Related Repositories
-v2 (Spring Boot 전환): https://github.com/dndkd97/SB_ERP_V2
-v3 (REST API + AI): https://github.com/dndkd97/SB_ERP_V3
+v2 (Spring Boot 전환): https://github.com/dndkd97/SB_ERP_V2  
+v3 (REST API + AI): https://github.com/dndkd97/SB_ERP_V3  
 팀 V1 전체 원본: [https://github.com/yoonguri988/spring-breeze-erp](https://github.com/yoonguri988/spring-breeze-erp/tree/main/spring-breeze-erp-v1)
