@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+   <!-- 암호화 : BCrypt -->
+   <bean id="passwordEncoder" 
+         class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+   <!-- 로그인성공 --> 
+   <bean id="successHandler"
+         class="com.sb.erp.security.LoginSuccessHandler"/>
+   <!-- 로그인실패-권한x --> 
+   <bean id="deniedHandler"
+         class="com.sb.erp.security.DeniedHandler"/>
+   <!-- 유저정보  -->
+   <bean id="customUserDetailsService"
+         class="com.sb.erp.security.CustomUserDetailsService"/>
+
+   <security:http>
+   	  <!-- cyj : 추후 접근 권한 변경 -->
+      <!-- <security:intercept-url  pattern="/security/all"     access="permitAll" /> -->
+      <!-- <security:intercept-url  pattern="/security/member"  access="hasRole('ROLE_MEMBER')" /> -->
+
+      <security:intercept-url  pattern="/auth/login" access="permitAll" />
+      <security:intercept-url  pattern="/auth/confirm"    access="permitAll" />
+      <security:intercept-url  pattern="/auth/updatePass"    access="permitAll" />
+      <security:intercept-url  pattern="/auth/fail"    access="permitAll" />
+      <security:intercept-url  pattern="/auth/forgotResetPass"    access="permitAll" />
+      <security:intercept-url  pattern="/auth/resetPass" access="isAuthenticated()" />
+      <security:intercept-url  pattern="/auth/**"    access="permitAll" />
+	
+      <!-- KJY : 2차 프로젝트때 페이지 접근 권한은 조금 열어놓고 메서드쪽에서 어노테이션으로 막아야할거같음 -->
+      <security:intercept-url  pattern="/appr/**" access="hasAuthority('ROOT')"/>
+      <!-- KJY -->
+      
+      <!-- jsj : 차후 add/resetPass 권한은 ADMIN으로 변경 예정 -->
+      <security:intercept-url  pattern="/emp/**" access="isAuthenticated()"/>
+      <!-- jsj -->
+
+	  <!-- sonmir -->
+   	  <security:intercept-url  pattern="/notice/**"    access="isAuthenticated()" />
+	  <!-- sonmir -->
+   	  
+   	  <!-- jang -->
+   	  <security:intercept-url pattern="/res/**" access="isAuthenticated()"/>
+   	  <security:intercept-url pattern="/resv/**" access="isAuthenticated()"/>
+   	  <security:intercept-url pattern="/admin/**" access="hasAuthority('ROOT') or hasRole('ROLE_ADMIN')"/>
+   	  <!-- jang -->
+   	  
+   	  
+   	  <security:intercept-url pattern="/error/**" access="permitAll"/>
+   	  
+   	  <security:intercept-url pattern="/" access="isAuthenticated()"/>
+   	  <security:intercept-url pattern="/com/**" access="isAuthenticated()"/>
+   	  <security:intercept-url pattern="/dept/**" access="isAuthenticated()"/>
+   	  <!-- cyj -->
+   	  
+   	  <!-- CDY -->
+   	  <security:intercept-url pattern="/proj/**" access="isAuthenticated()"/>
+   	  <!-- CDY -->
+   	   
+	  <security:form-login
+	  	  login-page="/auth/login"
+	  	  login-processing-url="/auth/login"
+	  	  authentication-success-handler-ref="successHandler"
+	  	  authentication-failure-url="/auth/fail"
+	  />
+	  
+	  <security:logout 
+	      logout-url="/auth/logout"
+	      logout-success-url="/auth/login"
+	      invalidate-session="true"/>
+	  <!-- cyj : 추후 접근 권한 변경 -->
+   </security:http>
+
+   <security:authentication-manager>
+      <security:authentication-provider   user-service-ref="customUserDetailsService">
+         <security:password-encoder      ref="passwordEncoder"/>
+      </security:authentication-provider>
+   </security:authentication-manager>
+</beans>
+
+   <!-- 유저정보  
+   1. permitAll : 모두 다 접근가능
+   2. hasRole('ROLE_MEMBER')  : ROLE_MEMBER 권한
+   3. isAuthenticated()       : 인증된 사용자  (로그인)
+   ※ 구체적인 패턴을 위에, 포괄패턴은 아래
+   -->
