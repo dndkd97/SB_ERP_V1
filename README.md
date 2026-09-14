@@ -67,7 +67,8 @@ Troubleshooting
 > 문제: 뷰(JSP) · 컨트롤러 · MyBatis 매퍼 등 여러 계층에 걸쳐 원인이 얽혀 있어 파악이 어려웠음
 해결: 계층별로 하나씩 재현하며 순차적으로 원인 추적 및 디버깅
 결과: 프로젝트/태스크 모듈의 기본 CRUD 흐름 안정화
-Related Repositories
+> 
+## Related Repositories
 v2 (Spring Boot 전환): 
 v3 (REST API + AI): 
 팀 전체 원본: https://github.com/yoonguri988/spring-breeze-erp
