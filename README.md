@@ -1,4 +1,4 @@
-# SBerp v1 — 프로젝트/태스크 관리 모듈
+# 🏢 SBerp (spring-breeze-erp-v1) — 프로젝트/태스크 관리 모듈
 
 6인 팀으로 진행한 사내 ERP 프로젝트(spring-breeze) 중, 제가 처음부터 끝까지 설계·구현한 프로젝트/태스크/프로젝트멤버 모듈만 따로 정리한 저장소입니다. 
 > 팀 전체 코드→ https://github.com/yoonguri988/spring-breeze-erp  
